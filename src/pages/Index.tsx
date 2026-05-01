@@ -1,5 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
+import EasterEgg from "@/components/EasterEgg";
 
 const projects = [
   {
@@ -142,6 +144,12 @@ const useClock = () => {
   return time;
 };
 
+const KonamiHint = ({ chars }: { chars: string }) => (
+  <span className="ml-2 inline-block font-mono text-[0.7rem] normal-case tracking-normal text-red-500 dark:text-red-400">
+    {chars}
+  </span>
+);
+
 const ProjectCard = ({ project, index }: { project: (typeof projects)[number]; index: number }) => {
   const handlePointerMove = (event: React.PointerEvent<HTMLAnchorElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -167,7 +175,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[number]; i
         <span>{project.year}</span>
       </div>
       <div className="relative z-10 space-y-6">
-        <div className="h-px w-16 bg-primary transition-all duration-500 group-hover:w-28" />
+        <div className="h-px w-16 bg-accent-bold transition-all duration-500 group-hover:w-28" />
         <div className="space-y-4">
           <h3 className="font-sans text-3xl font-medium tracking-[0.08em] text-foreground md:text-5xl">{project.title}</h3>
           <p className="max-w-xl text-lg leading-[1.65] text-muted-foreground">{project.description}</p>
@@ -207,18 +215,22 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <EasterEgg />
       <div className="scroll-line" aria-hidden="true" />
       <header className="fixed left-0 right-0 top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
         <nav className="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-4 font-sans text-xs uppercase tracking-[0.18em] sm:px-8">
           <a href="#intro" className="story-link lowercase tracking-[0.14em] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             hazrin
           </a>
-          <div className="hidden items-center gap-7 sm:flex">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href} className="story-link lowercase text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                {item.label}
-              </a>
-            ))}
+          <div className="flex items-center gap-7">
+            <div className="hidden items-center gap-7 sm:flex">
+              {navItems.map((item) => (
+                <a key={item.href} href={item.href} className="story-link lowercase text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  {item.label}
+                </a>
+              ))}
+            </div>
+            <ThemeToggle />
           </div>
         </nav>
       </header>
@@ -226,7 +238,7 @@ const Index = () => {
       <section id="intro" className="mx-auto flex min-h-screen max-w-[1200px] flex-col justify-between px-5 pb-12 pt-28 sm:px-8 md:pt-36">
         <div className="reveal grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-end">
           <div className="space-y-8">
-            <p className="section-kicker">intro</p>
+            <p className="section-kicker">intro<KonamiHint chars="↑↑" /></p>
             <h1 className="max-w-4xl font-sans text-[clamp(3.7rem,13vw,9.75rem)] font-medium uppercase leading-[0.86] tracking-[0.08em]">
               Mohd Hazrin
             </h1>
@@ -253,7 +265,7 @@ const Index = () => {
       <section id="work" className="mx-auto max-w-[1200px] px-5 py-24 sm:px-8 md:py-32">
         <div className="reveal mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="space-y-5">
-            <p className="section-kicker">selected work</p>
+            <p className="section-kicker">selected work<KonamiHint chars="↓↓" /></p>
             <h2 className="max-w-3xl font-sans text-4xl font-medium uppercase leading-tight tracking-[0.1em] md:text-6xl">Built for real people.</h2>
           </div>
           <p className="max-w-sm text-lg leading-[1.7] text-muted-foreground">Projects delivered across industries—aviation, government, e-commerce, and community platforms.</p>
@@ -268,7 +280,7 @@ const Index = () => {
       <section id="side" className="mx-auto max-w-[1200px] px-5 py-24 sm:px-8 md:py-32">
         <div className="reveal mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="space-y-5">
-            <p className="section-kicker">side builds</p>
+            <p className="section-kicker">side builds<KonamiHint chars="←→" /></p>
             <h2 className="max-w-3xl font-sans text-4xl font-medium uppercase leading-tight tracking-[0.1em] md:text-6xl">Landing pages for real businesses.</h2>
           </div>
           <p className="max-w-sm text-lg leading-[1.7] text-muted-foreground">Restaurant menus, cafe storefronts, and event platforms—built in my free time for local businesses.</p>
@@ -300,7 +312,7 @@ const Index = () => {
         <div className="mx-auto max-w-[1080px] space-y-20">
           <div className="reveal grid gap-12 md:grid-cols-[0.8fr_1.2fr]">
             <div className="space-y-5">
-              <p className="section-kicker">about</p>
+              <p className="section-kicker">about<KonamiHint chars="←→" /></p>
               <h2 className="font-sans text-4xl font-medium uppercase leading-tight tracking-[0.1em] md:text-5xl">Precision over noise.</h2>
             </div>
             <p className="text-2xl leading-[1.65] text-foreground">
@@ -380,7 +392,7 @@ const Index = () => {
       <section id="contact" className="mx-auto max-w-[1200px] px-5 py-24 sm:px-8 md:py-32">
         <div className="reveal grid gap-12 md:grid-cols-[1.2fr_0.8fr] md:items-end">
           <div className="space-y-7">
-            <p className="section-kicker">contact</p>
+            <p className="section-kicker">contact<KonamiHint chars="BA" /></p>
             <h2 className="max-w-4xl font-sans text-5xl font-medium uppercase leading-[0.95] tracking-[0.08em] md:text-8xl">Let’s make the next thing precise.</h2>
           </div>
           <div className="space-y-8">

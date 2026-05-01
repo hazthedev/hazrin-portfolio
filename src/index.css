@@ -29,6 +29,9 @@ All colors MUST be HSL.
     --accent: 101 18% 82%;
     --accent-foreground: 0 0% 10%;
 
+    --accent-bold: 92 35% 36%;
+    --accent-bold-foreground: 60 23% 97%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 23% 97%;
 
@@ -56,47 +59,58 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 30 8% 8%;
+    --foreground: 60 15% 92%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 30 8% 11%;
+    --card-foreground: 60 15% 92%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 30 8% 8%;
+    --popover-foreground: 60 15% 92%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 101 18% 62%;
+    --primary-foreground: 30 8% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 30 6% 16%;
+    --secondary-foreground: 60 15% 92%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 30 6% 16%;
+    --muted-foreground: 48 8% 62%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 101 14% 22%;
+    --accent-foreground: 60 15% 92%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --accent-bold: 92 40% 55%;
+    --accent-bold-foreground: 30 8% 8%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 60 15% 92%;
+
+    --border: 30 6% 18%;
+    --input: 30 6% 18%;
+    --ring: 101 18% 62%;
+    --sidebar-background: 30 8% 8%;
+    --sidebar-foreground: 60 15% 92%;
+    --sidebar-primary: 101 18% 62%;
+    --sidebar-primary-foreground: 30 8% 8%;
+    --sidebar-accent: 30 6% 16%;
+    --sidebar-accent-foreground: 60 15% 92%;
+    --sidebar-border: 30 6% 18%;
+    --sidebar-ring: 101 18% 62%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, color, border-color, fill, stroke;
+    transition-duration: 350ms;
+    transition-timing-function: ease;
   }
 
   body {
@@ -133,7 +147,7 @@ All colors MUST be HSL.
 
   .section-kicker::before {
     content: "— ";
-    color: hsl(var(--primary));
+    color: hsl(var(--accent-bold));
   }
 
   .story-link {
@@ -155,7 +169,7 @@ All colors MUST be HSL.
   height: 2px;
   width: 100%;
   transform-origin: left;
-  background: hsl(var(--primary));
+  background: hsl(var(--accent-bold));
   animation: scroll-progress linear both;
   animation-timeline: scroll();
 }
@@ -228,6 +242,26 @@ All colors MUST be HSL.
 @keyframes draw-signature {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes easter-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes easter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
