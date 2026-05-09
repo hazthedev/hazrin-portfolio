@@ -13,6 +13,33 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: [
+          "Fraunces",
+          "Cormorant Garamond",
+          "DM Serif Display",
+          "Georgia",
+          "Times New Roman",
+          "serif",
+        ],
+        sans: [
+          "Manrope",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
+        mono: [
+          "JetBrains Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Consolas",
+          "monospace",
+        ],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
